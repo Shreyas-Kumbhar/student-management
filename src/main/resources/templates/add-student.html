@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" th:href="@{/css/add-student.css}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Add Student</h2>
+
+    <form th:action="@{/save}" th:object="${student}" th:method="post">
+
+        <!-- Hidden ID field -->
+        <input type="hidden" th:field="*{id}"/>
+
+        <label>Name</label>
+        <input type="text" th:field="*{name}" placeholder="Enter name"/>
+        <span class="error"
+              th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}"></span>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" placeholder="Enter email"/>
+        <span class="error"
+              th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}"></span>
+
+        <label>Age</label>
+        <input type="number" th:field="*{age}" placeholder="Enter age"/>
+        <span class="error"
+              th:if="${#fields.hasErrors('age')}"
+              th:errors="*{age}"></span>
+
+        <button type="submit">Save Student</button>
+    </form>
+
+    <a th:href="@{/}" class="back-link">← Back to Student List</a>
+</div>
+
+</body>
+</html>
